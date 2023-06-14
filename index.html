@@ -47,13 +47,11 @@ p3{
 /* PAGE */
 
 
-html,body{
+body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    height: 100%;
-
+    height: 100vh;
 }
 
 html{
@@ -68,14 +66,13 @@ body{
 
 #main-timeline{
     width: 90%;
-    height: 100%;
     border-left: 3px solid;
     border-color: var(--primary-c);
 }
 
 .timeline-group{
-
-    height: calc(100% - 5%);
+    min-height:100vh;
+    max-height:100vh ;
 }
 
 .timeline-group > * {
@@ -168,9 +165,33 @@ p1.tittle-card{
             </div>
             <div class="item">
             </div>
+            
+        </div>
+        <div class="timeline-group">
+            <div class="tittle-group">
+                <p1>Submissão da obra</p1>
+            </div>
+            <div class="definition-group">
+                <div class="card">
+                <div class="tittle-card">
+                    <p1 class="tittle-card">
+                        Tittle
+                    </p1>
+                </div>
+                <br>
+                <p3 class="content-card">
+                
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p3>
+                </div>
+            </div>
+            <div class="item">
+            </div>
         </div>
     </div>
 </body>
+
 <script>
 </script>
+
 </html>
