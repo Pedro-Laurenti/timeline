@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+/* PRESETS */
+
+:root {
+    /* space */
+    --margin-top: 20px;
+    --padding: 10px;
+
+    /* colors */
+    --primary-c: rgb(56, 106, 207);
+    --back-c-1: rgb(246, 246, 240);
+    --back-c-2: rgb(255, 255, 255);
+    --box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.08);
+
+    /* elements */
+    --border-left: 3px solid var(--primary-c);
+
+}
+
+p1{
+    font-size: 18px;
+    font-weight: 500;
+    font-variant-caps: small-caps;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--back-c-1);
+}
+
+
+/* PAGE */
+
+body{
+    margin: var(--margin-top) 0 0 0;
+}
+
+html,body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--back-c-1);
+}
+
+/* MAIN */
+
+#main-timeline{
+    width: 90%;
+    height: 100%;
+    border-left: 3px solid;
+    border-color: var(--primary-c);
+}
+
+.timeline-group{
+    margin-left: 10px;
+    height: calc(100% - 5%);
+}
+
+.timeline-group > * {
+    margin-bottom: 10px;
+}
+
+/* tittle */
+
+.tittle-group{
+    margin-left: -10px;
+    padding: 10px;
+    width: 15%;
+    background-color: var(--primary-c);
+    border-radius: 0 25px 25px 0;
+    text-align: center;
+}
+
+/* card */
+
+.definition-group{
+    width: 80%;
+    background-color: var(--back-c-2);
+    box-shadow: var(--box-shadow);
+    border-left: var(--border-left);
+}
+
+
+</style>
+
+<body>
+    <div id="main-timeline">
+        <div class="timeline-group">
+            <div class="tittle-group"><p1>Submissão da obra</p1></div>
+            <div class="definition-group">
+                <div class="card-definition">
+                    a
+                </div>
+            </div>
+            <div class="item-group">
+                a
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+</script>
+</html>
