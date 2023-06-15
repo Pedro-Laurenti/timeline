@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.container {
+  position: relative;
+}
+
+.elemento-desaparecer {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.elemento-alvo:hover + .elemento-desaparecer {
+  opacity: 0;
+}
+</style>
+<body>
+    <div class="container">
+        <div class="elemento-alvo">Passe o mouse aqui</div>
+        <div class="elemento-desaparecer">Este elemento irá desaparecer</div>
+      </div>
+      
+</body>
+</html>
