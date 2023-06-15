@@ -12,7 +12,7 @@
 
 :root {
     /* space */
-    --margin-top: 20px;
+    --margin-group: 20px 0 20px 0;
     --padding: 10px;
 
     /* colors */
@@ -28,7 +28,7 @@
 }
 
 p1{
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 500;
     text-transform: uppercase;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -36,11 +36,13 @@ p1{
 }
 
 p3{
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 16px;
+    font-weight: normal;
     font-variant-caps: normal;
+    font-weight: 400;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--secundary-c);
+    line-height: 28px;
 }
 
 
@@ -51,16 +53,13 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    margin: 0;
 }
 
 html{
     background-color: var(--back-c-1);
 }
 
-body{
-    margin: var(--margin-top) 0 0 0;
-}
 
 /* MAIN */
 
@@ -94,16 +93,17 @@ body{
 
 .definition-group{
     overflow: hidden;
+    padding: 15px;
 }
 
 .card{
     position: relative;
-    width: 80%;
     padding: 10px;
     margin-left: 25px;
     background-color: var(--back-c-2);
-    box-shadow: var(--box-shadow);
+    box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.08);
     border-left: var(--border-left);
+    border-radius: 0 25px 25px 0;
     text-align: justify;
 }
 
@@ -118,7 +118,7 @@ p1.tittle-card{
 .card::before {
     content: "";
     width: 100%;
-    height: 2px;
+    height: 3px;
     background-color: var(--primary-c);
     position: absolute;
     top: 1rem;
@@ -129,18 +129,23 @@ p1.tittle-card{
 /* item */
 
 .item{
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     background-color: var(--primary-c);
     border-radius: 50%;
     position: relative;
-    margin-left: calc(-10px - 3px); 
+    transform: translateX(calc(-50% - 1.5px)); 
 }
 
 .definition-group .item{
     overflow: visible !important;
 }
 
+
+.item:hover{
+    background-color: var(--secundary-c);
+    transition: 0.5s;
+}
 </style>
 
 <body>
