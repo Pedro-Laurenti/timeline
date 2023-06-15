@@ -160,7 +160,7 @@ p1.tittle-card{
 }
 
 .preview-item {
-    background-color: var(--primary-c);
+    background-color: var(--secundary-c);
     display: none;
     padding: 5px 25px;
     width: fit-content;
@@ -177,11 +177,21 @@ p1.tittle-card{
     transition: 0.3s;
 }
 
+/* fade out scroll */
+
+.fade-out {
+  transition: opacity 0.5s;
+}
+
+.fade-out.hidden {
+  opacity: 0;
+}
+
 </style>
 
 <body>
     <div id="main-timeline">
-        <div class="timeline-group">
+        <div class="timeline-group" id="fade-scroll">
             <div class="tittle-group">
                 <p1>Submissão da obra</p1>
             </div>
@@ -206,6 +216,37 @@ p1.tittle-card{
             </div>
             <div class="item">
                 <div class="circle">
+
+                </div>
+                <p2 class="preview-item">Este elemento irá aparecer</p2>
+            </div>
+        </div>
+        <div class="timeline-group" id="fade-scroll">
+            <div class="tittle-group">
+                <p1>Submissão da obra</p1>
+            </div>
+            <div class="definition-group">
+                <div class="card">
+                <div class="tittle-card">
+                    <p1 class="tittle-card">
+                        Tittle
+                    </p1>
+                </div>
+                <br>
+                <p3 class="content-card">
+                
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p3>
+                </div>
+            </div>
+            <div class="item">
+                <div class="circle">
+                </div>
+                <p2 class="preview-item">Este elemento irá aparecer</p2>
+            </div>
+            <div class="item">
+                <div class="circle">
+
                 </div>
                 <p2 class="preview-item">Este elemento irá aparecer</p2>
             </div>
@@ -214,6 +255,9 @@ p1.tittle-card{
 </body>
 
 <script>
+
+
+
 </script>
 
 </html>
