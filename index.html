@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,12 +24,14 @@
     --primary-c-6: rgb(207, 56, 200);
     --primary-c-7: rgb(139, 56, 207);
     --secundary-c:rgb(60, 60, 60);
+    --terciary-c: rgb(164, 162, 162);
     --back-c-1: rgb(246, 246, 240);
     --back-c-2: rgb(255, 255, 255);
     --box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.08);
 
     /* elements */
     --border-left: 3px solid var(--primary-c);
+    --border-left-item: 3px solid var(--primary-c-3);
 
 }
 
@@ -44,7 +46,6 @@ p1{
 p2{
     font-size: 16px;
     font-weight: 500;
-    text-transform: normal;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--back-c-1);
 }
@@ -62,29 +63,49 @@ p3{
 
 /* PAGE */
 
-
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-}
-
 html{
-    background-color: var(--back-c-1);
+    background-color:white;
 }
 
 
 /* MAIN */
 
+#main-timeline::-webkit-scrollbar {
+  width: 10px;
+}
+
+#main-timeline::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 25px;
+}
+
+#main-timeline::-webkit-scrollbar-thumb {
+  background-color: var(--terciary-c);
+  border-radius: 25px;
+}
+
+
+#wrapper-timeline{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+
 #main-timeline{
+    height: 90vh;
+    width: 80vw !important;
+    overflow-y: scroll;
     width: 90%;
+    padding-right: 20px; /* Ajuste o valor conforme necessário */
     border-left: 3px solid;
     border-color: var(--primary-c);
+    background-color: var(--back-c-1);
 }
 
 .timeline-group{
-    min-height:100vh;
+    height:90vh;
 }
 
 .timeline-group > * {
@@ -106,18 +127,21 @@ html{
 
 .definition-group{
     overflow: hidden;
-    padding: 15px;
 }
 
 .card{
     position: relative;
+}
+
+.wrapper-card{
     padding: 10px;
     margin-left: 25px;
     background-color: var(--back-c-2);
-    box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.08);
-    border-left: var(--border-left);
+    border: var(--border-left);
     border-radius: 0 25px 25px 0;
     text-align: justify;
+    position: relative;
+    z-index: 5;
 }
 
 p1.tittle-card{
@@ -136,7 +160,7 @@ p1.tittle-card{
     position: absolute;
     top: 1rem;
     left: -50%;
-    z-index: -1;
+    z-index: 1;
 }
 
 /* item */
@@ -145,6 +169,8 @@ p1.tittle-card{
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 50px 0;
+    position: relative;
 }
 
 .circle{
@@ -152,7 +178,7 @@ p1.tittle-card{
     height: 20px;
     background-color: var(--primary-c);
     border-radius: 50%;
-    position: relative;
+    position: absolute;
     transform: translateX(calc(-50% - 1.5px));
 }
 
@@ -167,14 +193,15 @@ p1.tittle-card{
 
 .preview-item {
     background-color: var(--secundary-c);
-    display: none;
     padding: 5px 25px;
     width: fit-content;
     border-radius: 0 25px 25px 0;
     text-align: center;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
     transition: 0.3s;
+    z-index: 5;
+    position: absolute;
+    margin: 0 25px;
 }
 
 .circle:hover + .preview-item {
@@ -183,16 +210,37 @@ p1.tittle-card{
     transition: 0.3s;
 }
 
+.card-item{
+    display: none;
+    flex-direction: column;
+    position: relative;
+    padding: 10px;
+    margin-left: 25px;
+    background-color: var(--back-c-2);
+    box-shadow: var(--box-shadow);
+    border-left: var(--border-left);
+    border-radius: 0 25px 25px 0;
+    text-align: justify;
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-item.show {
+    display: flex;
+    opacity: 1;
+}
+
 /* fade out scroll */
 .timeline-navigation {
-  position: fixed;
+  position: relative;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 100;
 }
 
 .timeline-navigation button {
@@ -218,186 +266,264 @@ p1.tittle-card{
 .timeline-navigation {
   scroll-snap-type: y mandatory;
 }
+
 </style>
 
 <body>
-    <div id="main-timeline">
-        <div class="timeline-group">
-            <div class="tittle-group ">
-                <p1>Submissão da obra</p1>
-            </div>
-            <div class="definition-group">
-                <div class="card">
-                <div class="tittle-card">
-                    <p1 class="tittle-card">
-                        Tittle
-                    </p1>
-                </div>
-                <br>
-                <p3 class="content-card">
-                
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p3>
-                </div>
-            </div>
-            <div class="item">
-                <div class="circle">
-                </div>
-                <p2 class="preview-item">Este elemento irá aparecer</p2>
-            </div>
-            <div class="item">
-                <div class="circle">
 
+    <div id="wrapper-timeline">
+        <div id="main-timeline">
+            <div class="timeline-group">
+                <div class="tittle-group ">
+                    <p1>Submissão da obra</p1>
                 </div>
-                <p2 class="preview-item">Este elemento irá aparecer</p2>
-            </div>
-        </div>
-        <div class="timeline-group">
-            <div class="tittle-group">
-                <p1>Submissão da obra</p1>
-            </div>
-            <div class="definition-group">
-                <div class="card">
-                <div class="tittle-card">
-                    <p1 class="tittle-card">
-                        Tittle
-                    </p1>
+                <div class="definition-group">
+                    <div class="card">
+                        <div class="wrapper-card">
+                            <div class="tittle-card">
+                                <p1 class="tittle-card">
+                                    Tittle
+                                </p1>
+                            </div>
+                            <br>
+                            <p3 class="content-card">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p3>
+                        </div>
+                    </div>
                 </div>
-                <br>
-                <p3 class="content-card">
-                
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p3>
+                <div class="item">
+                    <div class="circle">
+                    </div>
+                    <p2 class="preview-item">Este elemento irá aparecer</p2>
+                    <div class="card-item">
+                        <div><img src="" alt=""></div>
+                        <div>
+                            <p3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p3>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="circle">
+                    </div>
+                    <p2 class="preview-item">Este elemento irá aparecer</p2>
+                    <div class="card-item">
+                        <div><img src="" alt=""></div>
+                        <div>
+                            <p3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p3>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="circle">
+            <div class="timeline-group">
+                <div class="tittle-group ">
+                    <p1>Submissão da obra</p1>
                 </div>
-                <p2 class="preview-item">Este elemento irá aparecer</p2>
+                <div class="definition-group">
+                    <div class="card">
+                        <div class="wrapper-card">
+                            <div class="tittle-card">
+                                <p1 class="tittle-card">
+                                    Tittle
+                                </p1>
+                            </div>
+                            <br>
+                            <p3 class="content-card">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p3>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="circle">
+                    </div>
+                    <p2 class="preview-item">Este elemento irá aparecer</p2>
+                    <div class="card-item">
+                        <div><img src="" alt=""></div>
+                        <div>
+                            <p3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p3>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="circle">
+                    </div>
+                    <p2 class="preview-item">Este elemento irá aparecer</p2>
+                    <div class="card-item">
+                        <div><img src="" alt=""></div>
+                        <div>
+                            <p3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p3>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="item">
-                <div class="circle">
+            <div class="timeline-group">
+                <div class="tittle-group ">
+                    <p1>Submissão da obra</p1>
+                </div>
+                <div class="definition-group">
+                    <div class="card">
+                        <div class="wrapper-card">
+                            <div class="tittle-card">
+                                <p1 class="tittle-card">
+                                    Tittle
+                                </p1>
+                            </div>
+                            <br>
+                            <p3 class="content-card">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p3>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="circle">
+                    </div>
+                    <p2 class="preview-item">Este elemento irá aparecer</p2>
+                    <div class="card-item">
+                        <div><img src="" alt=""></div>
+                        <div>
+                            <p3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p3>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="circle">
+                    </div>
+                    <p2 class="preview-item">Este elemento irá aparecer</p2>
+                    <div class="card-item">
+                        <div><img src="" alt=""></div>
+                        <div>
+                            <p3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p3>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                </div>
-                <p2 class="preview-item">Este elemento irá aparecer</p2>
-            </div>
-        </div>
-        <div class="timeline-group">
-            <div class="tittle-group">
-                <p1>Submissão da obra</p1>
-            </div>
-            <div class="definition-group">
-                <div class="card">
-                <div class="tittle-card">
-                    <p1 class="tittle-card">
-                        Tittle
-                    </p1>
-                </div>
-                <br>
-                <p3 class="content-card">
-                
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p3>
-                </div>
-            </div>
-            <div class="item">
-                <div class="circle">
-                </div>
-                <p2 class="preview-item">Este elemento irá aparecer</p2>
-            </div>
-            <div class="item">
-                <div class="circle">
-
-                </div>
-                <p2 class="preview-item">Este elemento irá aparecer</p2>
-            </div>
-        </div>
-        <div class="timeline-navigation">
-            <button class="prevButton"><p2>Voltar</p2></button>
-            <button class="nextButton"><p2>Próximo</p2></button>
         </div>
     </div>
+
+    <div class="timeline-navigation">
+        <button class="prevButton"><p2>Voltar</p2></button>
+        <button class="nextButton"><p2>Próximo</p2></button>
+    </div>
+    
     <script>
+        // prev next buttons
         const prevButton = document.querySelector('.prevButton');
         const nextButton = document.querySelector('.nextButton');
+        const timelineContainer = document.getElementById('main-timeline');
         const timelineGroups = document.querySelectorAll('.timeline-group');
         let currentIndex = 0;
         let isScrolling = false;
 
         nextButton.addEventListener('click', () => {
-            if (currentIndex < timelineGroups.length - 1 && !isScrolling) {
-                scrollToNextGroup();
-            }
+        if (currentIndex < timelineGroups.length - 1 && !isScrolling) {
+            scrollToNextGroup();
+        }
         });
 
         prevButton.addEventListener('click', () => {
-            if (currentIndex > 0 && !isScrolling) {
-                scrollToPreviousGroup();
-            }
+        if (currentIndex > 0 && !isScrolling) {
+            scrollToPreviousGroup();
+        }
         });
 
         function scrollToNextGroup() {
-            if (isScrolling) return;
-            
-            isScrolling = true;
-            const nextIndex = currentIndex + 1;
-            const targetGroup = timelineGroups[nextIndex];
-            const targetOffset = targetGroup.offsetTop;
-            const initialOffset = window.pageYOffset;
-            const distance = targetOffset - initialOffset;
-            const duration = 500; // Tempo de duração da animação em milissegundos
-            const startTime = performance.now();
+        if (isScrolling) return;
 
-            function scrollStep(timestamp) {
-                const currentTime = timestamp - startTime;
-                const scrollFraction = currentTime / duration;
-                const scrollAmount = distance * scrollFraction;
-                const newPosition = initialOffset + scrollAmount;
+        isScrolling = true;
+        const nextIndex = currentIndex + 1;
+        const targetGroup = timelineGroups[nextIndex];
+        const targetOffset = targetGroup.offsetTop - timelineContainer.offsetTop;
+        const initialOffset = timelineContainer.scrollTop;
+        const distance = targetOffset - initialOffset;
+        const duration = 500; // Tempo de duração da animação em milissegundos
+        const startTime = performance.now();
 
-                window.scrollTo(0, newPosition);
+        function scrollStep(timestamp) {
+            const currentTime = timestamp - startTime;
+            const scrollFraction = currentTime / duration;
+            const scrollAmount = distance * scrollFraction;
+            const newPosition = initialOffset + scrollAmount;
 
-                if (currentTime < duration) {
-                requestAnimationFrame(scrollStep);
-                } else {
-                currentIndex = nextIndex;
-                isScrolling = false;
-                }
-            }
+            timelineContainer.scrollTop = newPosition;
 
+            if (currentTime < duration) {
             requestAnimationFrame(scrollStep);
+            } else {
+            currentIndex = nextIndex;
+            isScrolling = false;
+            }
+        }
+
+        requestAnimationFrame(scrollStep);
         }
 
         function scrollToPreviousGroup() {
-            if (isScrolling) return;
-            
-            isScrolling = true;
-            const previousIndex = currentIndex - 1;
-            const targetGroup = timelineGroups[previousIndex];
-            const targetOffset = targetGroup.offsetTop;
-            const initialOffset = window.pageYOffset;
-            const distance = targetOffset - initialOffset;
-            const duration = 500; // Tempo de duração da animação em milissegundos
-            const startTime = performance.now();
+        if (isScrolling) return;
 
-            function scrollStep(timestamp) {
-                const currentTime = timestamp - startTime;
-                const scrollFraction = currentTime / duration;
-                const scrollAmount = distance * scrollFraction;
-                const newPosition = initialOffset + scrollAmount;
+        isScrolling = true;
+        const previousIndex = currentIndex - 1;
+        const targetGroup = timelineGroups[previousIndex];
+        const targetOffset = targetGroup.offsetTop - timelineContainer.offsetTop;
+        const initialOffset = timelineContainer.scrollTop;
+        const distance = targetOffset - initialOffset;
+        const duration = 500; // Tempo de duração da animação em milissegundos
+        const startTime = performance.now();
 
-                window.scrollTo(0, newPosition);
+        function scrollStep(timestamp) {
+            const currentTime = timestamp - startTime;
+            const scrollFraction = currentTime / duration;
+            const scrollAmount = distance * scrollFraction;
+            const newPosition = initialOffset + scrollAmount;
 
-                if (currentTime < duration) {
-                requestAnimationFrame(scrollStep);
-                } else {
-                currentIndex = previousIndex;
-                isScrolling = false;
-                }
-            }
+            timelineContainer.scrollTop = newPosition;
 
+            if (currentTime < duration) {
             requestAnimationFrame(scrollStep);
+            } else {
+            currentIndex = previousIndex;
+            isScrolling = false;
+            }
+        }
+
+        requestAnimationFrame(scrollStep);
+        }
+        // cards
+        const circleElements = document.querySelectorAll('.circle');
+        const cardItems = document.querySelectorAll('.card-item');
+
+        circleElements.forEach(circleElement => {
+        circleElement.addEventListener('click', () => {
+            const cardItem = circleElement.closest('.item').querySelector('.card-item');
+            toggleCardItem(cardItem);
+        });
+        });
+
+        document.addEventListener('click', (event) => {
+        const clickedElement = event.target;
+
+        if (!clickedElement.classList.contains('circle')) {
+            cardItems.forEach(cardItem => {
+            if (cardItem.classList.contains('show')) {
+                toggleCardItem(cardItem);
+            }
+            });
+        }
+        });
+
+        function toggleCardItem(cardItem) {
+        cardItems.forEach(item => {
+            if (item !== cardItem && item.classList.contains('show')) {
+            item.classList.remove('show');
+            }
+        });
+
+        cardItem.classList.toggle('show');
         }
     </script>
+
 </body>
 
 </html>
