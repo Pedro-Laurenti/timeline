@@ -65,8 +65,8 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline-group">
-                <div class="tittle-group ">
+            <div class="timeline-group two">
+                <div class="tittle-group">
                     <p1>Recuperação da obra (OCR)</p1>
                 </div>
                 <div class="definition-group">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline-group">
+            <div class="timeline-group two">
                 <div class="tittle-group ">
                     <p1>Tradução</p1>
                 </div>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline-group">
+            <div class="timeline-group two">
                 <div class="tittle-group ">
                     <p1>Revisão linguística</p1>
                 </div>
@@ -157,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline-group">
+            <div class="timeline-group three">
                 <div class="tittle-group ">
                     <p1>Definição de estilo</p1>
                 </div>
@@ -187,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline-group">
+            <div class="timeline-group three">
                 <div class="tittle-group ">
                     <p1>Diagramação</p1>
                 </div>
@@ -217,7 +217,7 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline-group">
+            <div class="timeline-group four">
                 <div class="tittle-group ">
                     <p1>Revisão final</p1>
                 </div>
@@ -247,7 +247,7 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline-group">
+            <div class="timeline-group four">
                 <div class="tittle-group ">
                     <p1>Envio para gráfica</p1>
                 </div>
@@ -277,8 +277,8 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline-group ultimo">
-                <div class="tittle-group ">
+            <div class="timeline-group ultimo four">
+                <div class="tittle-group ultimo">
                     <p1>Lançamento</p1>
                 </div>
             </div>

@@ -594,7 +594,7 @@
 	<div id="content-wrap" class="container clr">
 
 		<link rel="stylesheet" href="timeline\style-timeline.css"> <!-- timeline style-->
-		<?php include 'timeline\timeline.php'; ?>
+		<?php include 'timeline/timeline.php'; ?>
 		<script src="timeline\script.js"></script>
 
 	</div>
